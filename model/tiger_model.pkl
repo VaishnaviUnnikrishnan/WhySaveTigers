@@ -1,0 +1,7 @@
+import joblib
+
+# Save the model
+joblib.dump(model, 'model.pkl')
+
+# Load the model
+model = joblib.load('model.pkl')

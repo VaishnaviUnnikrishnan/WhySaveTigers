@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}Recent Data{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: lightgreen;
+    }
+    /* Apply light and dark green colors alternately */
+    tr:nth-child(even) {
+        background-color: lightgreen;
+    }
+    tr:nth-child(odd) {
+        background-color: #4CAF50
+    }
+
+</style>
+
+<h1>Recent Data</h1>
+<p>The recent data on tiger populations across various states in India indicates significant efforts in tracking and habitat monitoring. Bihar, Uttar Pradesh, and Uttarakhand show extensive fieldwork with numerous trails and transects being surveyed. Uttarakhand stands out with the highest figures in all metrics, indicating a robust monitoring system. This state has 2735 trails covering 12389 km and 2522 transects spanning 4299 km, reflecting its commitment to extensive wildlife tracking and habitat assessment.</p><br>
+
+<p>The high number of habitat plots and camera trap numbers in Uttarakhand (8256 and 2165, respectively) suggests intensive efforts to monitor and protect the tiger population. Uttar Pradesh also shows substantial activity with significant lengths of trails and transects, alongside a considerable number of habitat plots and camera traps. Bihar, while having lower figures compared to the other states, still demonstrates active engagement in tiger monitoring with 1372 habitat plots and 429 camera traps.</p><br>
+
+<p>Overall, the data underscores a concerted effort in these states to ensure the preservation and monitoring of tigers, reflecting a strong commitment to wildlife conservation.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>State</th>
+            <th>Number of Trails</th>
+            <th>Total length of Trails</th>
+            <th>Number of Transect</th>
+            <th>Total length of Transect (km)</th>
+            <th>Number of habitat plots</th>
+            <th>Camera trap numbers</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in recent_data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}

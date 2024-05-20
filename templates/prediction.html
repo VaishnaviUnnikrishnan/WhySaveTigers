@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tiger Population Prediction{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url('https://media.tenor.com/OUEdwa4iQDwAAAAC/scared-of-water-keeping-a-sumatran-tiger-healthy.gif');
+        background-position: center 25%; /* Places the image 25% from the top and centered horizontally */
+        background-size: cover; /* Ensures the image covers the entire background */
+    }
+</style>
+<div class="center-content">
+</style>
+
+<div class="center-content">
+    <h1>Tiger Population Prediction</h1>
+    <form method="POST" action="/prediction">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" min="2023" max="2100" required>
+        <br>
+        <label for="region">Region:</label>
+        <select id="region" name="region" required>
+            {% for region in regions %}
+                <option value="{{ region }}">{{ region }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if predicted_population %}
+    <h2>Prediction Result</h2>
+    <p>Predicted tiger population in {{ region }} in {{ year }}: {{ predicted_population }}</p>
+    <p>Total tiger population all over India in {{year}}: {{total_population_in_year}}</p>
+    <p>{{ extinction_message }}</p>
+    <p>Difference between population in 2023 and prediction in {{ year }}: {{ population_difference }}</p>
+    <h3>Population Distribution Plot</h3>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Population Distribution Plot:">
+    {% endif %}
+</div>
+{% endblock %}
